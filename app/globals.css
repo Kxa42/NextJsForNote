@@ -40,3 +40,30 @@ a {
     color-scheme: dark;
   }
 }
+
+/* 定义骨架图容器的样式 */
+.skeleton-container {
+  padding: 1em;
+}
+
+/* 定义骨架图项的样式 */
+.skeleton {
+  background-color: #e0e0e0; /* 背景色 */
+  border-radius: 4px; /* 圆角 */
+  animation: shimmer 1.5s infinite; /* 闪烁动画 */
+}
+
+/* 定义闪烁动画 */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* 其他可能的样式 */
+.v-stack {
+  margin-bottom: 1em;
+}
