@@ -21,7 +21,8 @@ export default function NotePreview({ children }) {
       <div
         className="text-with-markdown"
         dangerouslySetInnerHTML={{
-          __html: sanitizeHtml(marked(children || ''), {
+          __html: sanitizeHtml(marked(children || ''), {//这里是用了一个库，将markdown转化为html，然后用sanitizeHtml将html中的不安全内容清除掉
+                                                        //所以能够直接读取markdown内容进行展示
             allowedTags,
             allowedAttributes
           })
