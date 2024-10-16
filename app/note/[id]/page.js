@@ -1,5 +1,5 @@
 import Note from '@/components/Note'
-import { getNote } from '@/lib/redis';
+import { getNote } from '@/lib/prisma';
 import NoteSkeleton from '@/components/NoteSkeleton'
 import { Suspense } from 'react';
 

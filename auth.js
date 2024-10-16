@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
 import Credentials from "next-auth/providers/credentials";
-import { addUser, getUser } from "@/lib/redis";
+import { addUser, getUser } from "@/lib/prisma";
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   providers:
@@ -10,7 +10,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       name: "密码登录",
       // `credentials` 用于渲染登录页面表单
       credentials: {
-        username: { label: "邮箱", type: "text", placeholder: "输入您的邮箱" },
+        username: { label: "账号", type: "text", placeholder: "输入您的账号" },
         password: { label: "密码", type: "password", placeholder: "输入您的密码" }
       },
       // 处理从用户收到的认证信息
@@ -45,5 +45,15 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       if (pathname.startsWith("/note/edit")) return !!auth
       return true
     },
+    async jwt({ token, user, account }) {
+      if (account && account.type === "credentials" && user) {
+        token.userId = user.userId;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.userId = token.userId;
+      return session;
+    }
   }
 })

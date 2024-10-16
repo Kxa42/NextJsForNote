@@ -1,7 +1,7 @@
 'use server'
 
 import { redirect } from 'next/navigation'
-import {addNote, updateNote, delNote} from '@/lib/redis';
+import {addNote, updateNote, delNote} from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 
 import { stat, mkdir, writeFile } from 'fs/promises'
